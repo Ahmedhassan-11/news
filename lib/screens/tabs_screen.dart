@@ -7,8 +7,9 @@ import '../shared/network/remote/api_manager.dart';
 
 class TabsScreen extends StatefulWidget {
   List<Sources> sources;
+  String txt;
 
-  TabsScreen(this.sources);
+  TabsScreen(this.sources,this.txt);
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -38,7 +39,7 @@ class _TabsScreenState extends State<TabsScreen> {
                 }).toList())),
         FutureBuilder(
           future:
-              ApiManager.getNewsData(widget.sources[selectedIndex].id ?? ""),
+              ApiManager.getNewsData(widget.sources[selectedIndex].id ?? "",widget.txt ?? ""),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());

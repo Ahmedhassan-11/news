@@ -5,8 +5,9 @@ import 'package:news_c8_monday/shared/network/remote/api_manager.dart';
 
 class NewsScreen extends StatelessWidget {
   CategoryModel categoryModel;
+  String txt;
 
-  NewsScreen(this.categoryModel);
+  NewsScreen(this.categoryModel,this.txt);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class NewsScreen extends StatelessWidget {
         if (snapshot.hasError) {
           return Column(
             children: [
-              Text("Something went wrong"),
+              Center(child: Text("Something went wrong",textAlign: TextAlign.center,)),
               TextButton(
                 onPressed: () {},
                 child: Text("Try Again"),
@@ -41,7 +42,7 @@ class NewsScreen extends StatelessWidget {
           );
         }
         var sources = snapshot.data?.sources ?? [];
-        return TabsScreen(sources);
+        return TabsScreen(sources,txt);
       },
     );
   }
